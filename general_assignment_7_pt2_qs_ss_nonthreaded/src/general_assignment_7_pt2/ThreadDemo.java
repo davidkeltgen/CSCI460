@@ -1,20 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**************************************************
+ * Author: David Keltgen                            *
+ * Class: Montana State University: CSCI 460        *
+ * File Name: QSSS_NT.java                          *
+ * Date:  October 17 2014                           *
+ * Description:  ThreadDemo is used to setup the    *
+ *               the methods that will be ran in    *
+ *               their own threads. It then creates *
+ *               those threads                      *
+ **************************************************/
 package general_assignment_7_pt2;
-
-/**
- *
- * @author david
- */
 
 /*Make this Modular */
 public class ThreadDemo extends Thread {
 
-    QS_T QS;
-    QSSS_T QSSS;
+    public QS_T QS;
+    public QSSS_T QSSS;
     public Thread t;
     private String threadName;
     private int first;

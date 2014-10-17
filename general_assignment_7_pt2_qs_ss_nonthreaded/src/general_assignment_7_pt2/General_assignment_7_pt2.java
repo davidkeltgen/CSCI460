@@ -1,21 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**************************************************
+ * Author: David Keltgen                            *
+ * Class: Montana State University: CSCI 460        *
+ * File Name: General_assignment_7_pt2.java         *
+ * Date:  October 17 2014                           *
+ * Description: This file is the main file for      *
+ *              running quicksort/selection sort    *
+ *              programs in both their threaded and *
+ *              nonthreaded forms to determine time *
+ *              efficiencies.                       *
+ **************************************************/
+
 package general_assignment_7_pt2;
 
 import java.util.*;
 
 enum sortType {
-
     QS_NT, QSSS_NT, QS_T, QSSS_T, NONE;
 }
 
 /**
  *
  *
- * @author david
+ * @author David Keltgen
  */
 public class General_assignment_7_pt2 {
 
@@ -24,13 +30,13 @@ public class General_assignment_7_pt2 {
      */
     public static void main(String[] args) {
         //instance vars
-        boolean writeTimes = true;
+        boolean writeNumElements = true;
         int g, i, j;  //counter variables
         int n;  // number of potential different random values;
         int m;  // seed for RNG
         int x;  // list size
         int k;  // number of times experiment is to be ran
-        int numsorts;
+        int numsorts; //number of different sorting algorithms to be implmented
         long y = 0;
         long start = 0;
         long stop = 0; // in milliseconds, time it took to sort
@@ -39,9 +45,9 @@ public class General_assignment_7_pt2 {
         double timeResultsArr[]; // time values for different list sizes
         sortType sortArr[];
         String sFileName;
-        sortType type = sortType.NONE;
+        
 
-        /* Maybe enable user input? */
+        /* Maybe user input in future? */
         n = 500;
         m = 314159;
         Random generator = new Random(m);
@@ -49,39 +55,37 @@ public class General_assignment_7_pt2 {
         listSizeArr = new int[k];
         timeResultsArr = new double[k];
         sFileName = "sortingspreadsheet.csv";
-
         numsorts = 4;
-        sortArr = new sortType[4];
+        sortType type = sortType.NONE;
+        
+        sortArr = new sortType[numsorts];
         sortArr[0] = sortType.QS_NT;
         sortArr[1] = sortType.QSSS_NT;
         sortArr[2] = sortType.QS_T;
         sortArr[3] = sortType.QSSS_T;
 
+        /* Run the experiment for each sorting algorithm */
         for (g = 0; g < 4; g++) {
-            /* Run the experiment k times */
+            /* Run the experiment k times for each sort*/
             for (i = 0; i < k; i++) {
-                /*start with i = 0 for simplicity */
-                x = (int) Math.pow(i, 2);
+                /*start with i = 0 for simplicity , increment by input cubed*/
+                x = (int) Math.pow(i, 3);
                 listSizeArr[i] = x;
                 list = new int[x];
+                
                 /*Generate list with random vars */
                 for (j = 0; j < x; j++) {
                     list[j] = generator.nextInt(n);
                 }
 
-                System.out.println();
-                System.out.println();
                 //record time
                 start = System.nanoTime();
 
-                /**
-                 * *******************************************
-                 */
-                /* Insert favorite sorting algorithm here */
-                /* Unsorted list as input */
-                /**
-                 * *******************************************
-                 */
+                
+                /***********************************************************/
+                /* Insert favorite sorting algorithm here                  */
+                /* Unsorted list as input, also thread status if threaded  */
+                /* *********************************************************/
                 type = sortArr[g];
                 switch (type) {
                     case QS_NT:
@@ -101,45 +105,28 @@ public class General_assignment_7_pt2 {
                         qsss_t.quickSort(list, 0, list.length - 1);
                         break;
                     default:
-                        System.out.println("None of these sorts");
+                        System.out.println("There will be none of these sorts around here.");
 
                 }
 
                 //record time
                 stop = System.nanoTime();
 
-                //elapsed time = end time - start time
+                /*Get the time in seconds (ns / 1e9) */
                 y = stop - start;
                 double temp = (double) y / (double) 1000000000;
-               // System.out.println("temp is:  " + temp);
                 timeResultsArr[i] = temp;
-               // System.out.println("stop start y");
-               // System.out.println(stop + "  " + start + "  " + y);
-
-                //System.out.println("sorted");
-                for (j = 0; j < list.length; j++) {
-                //    System.out.format("%d ", list[j]);
-                }
-               // System.out.println();
-               //System.out.println();
 
             }// end run experiment k times
-           // System.out.println("listSizeArr");
-           // for (j = 0; j < listSizeArr.length; j++) {
-            //    System.out.format("%d ", listSizeArr[j]);
-            //}
-           // System.out.println();
-           // System.out.println();
-
-           // for (j = 0; j < timeResultsArr.length; j++) {
-           //     System.out.format("%f ", timeResultsArr[j]);
-           // }
             
-            if (writeTimes) {
+            /* Finally write time values to a CSV file */
+            /* First time write number of elements */
+            if (writeNumElements) {
                 CsvWriter writer = new CsvWriter(listSizeArr, timeResultsArr, type, sFileName);
                 writer.generateCSVFile();
-                writeTimes = false;
+                writeNumElements = false;
 
+              /* After the first sort, number of elements is the same, so dont write again */  
             } else {
                 CsvWriter writer = new CsvWriter(timeResultsArr, type, sFileName);
                 writer.generateCSVFile();

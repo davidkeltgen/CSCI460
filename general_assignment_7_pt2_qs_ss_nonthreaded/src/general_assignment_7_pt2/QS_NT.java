@@ -1,16 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+/**************************************************
+ * Author: David Keltgen                            *
+ * Class: Montana State University: CSCI 460        *
+ * File Name: QS_NT.java                          *
+ * Date:  October 17 2014                           *
+ * Description:  Nonthreaded implementation of      *
+ *               quicksort algorithm.              *
+ **************************************************/
 package general_assignment_7_pt2;
-
-/**
- * This version of Quicksort will simply take an array with random integers in
- * it and sort it.
- *
- * @author David Keltgen Date: 10/5/14
- */
-import java.util.*;
 
 public class QS_NT {
     
@@ -18,7 +14,6 @@ public class QS_NT {
     int first;
     int last;
     int pivIndex;
-    //boolean threadsCreated = false;
     public QS_NT()
     {
     }

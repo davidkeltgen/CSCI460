@@ -1,24 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**************************************************
+ * Author: David Keltgen                            *
+ * Class: Montana State University: CSCI 460        *
+ * File Name: QS_T.java                          *
+ * Date:  October 17 2014                           *
+ * Description:  Threaded implementation of         *
+ *               quicksort algorithm.               *
+ **************************************************/
 
 package general_assignment_7_pt2;
-
-/**
- *
- * @author david
- */
  
 public class QS_T {
-
     int[] table;
     int first;
     int last;
     int pivIndex;
     boolean threadsCreated;
-    
 
     public QS_T(int[] in_table, int in_first, int in_last, boolean in_threadsCreated) {
         table = in_table;
@@ -29,12 +25,10 @@ public class QS_T {
 
     public void quickSort(int[] table, int first, int last) {
         if (first < last) {
-            System.out.println("inside QS_T");
             pivIndex = partition(table, first, last);
             /* If this is the first time going into quicksort, create two threads, that will
              * each handle one half of the table, or 1 partition each */
             if (threadsCreated == false) {
-                System.out.println("inside threadsCreated");
                 //threadsCreated = true;
                 ThreadDemo T1 = new ThreadDemo("Thread-1", this.table, first, pivIndex - 1, sortType.QS_T) ;
                 ThreadDemo T2 = new ThreadDemo("Thread-2", this.table, pivIndex + 1, last, sortType.QS_T);
@@ -45,17 +39,9 @@ public class QS_T {
             }
                 else
                {
-                /*If partition size greater than 11 */
-            //if ((pivIndex - 1) - first > 11) {
                     quickSort(table, first, pivIndex - 1);
                     quickSort(table, pivIndex + 1, last);
                 }
-                //} else /* If smaller, use selection sort */ {
-                //    selectionSort(table, first, pivIndex - 1);
-                //    selectionSort(table, pivIndex + 1, last);
-                //}
-                // }
-                //}
             }
         }
     

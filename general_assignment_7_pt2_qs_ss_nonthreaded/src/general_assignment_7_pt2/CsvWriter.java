@@ -1,17 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**************************************************
+ * Author: David Keltgen                            *
+ * Class: Montana State University: CSCI 460        *
+ * File Name: CSVWriter.java                        *
+ * Date:  October 17 2014                           *
+ * Description:  CSVWriter takes in a sorting       *
+ *               list size,the time it took of each *
+ *               sorting of that respective size,   *
+ *               and the filename that it is writing*
+ *               to and the type of sorting used    *
+ *               It then compiles those values into *
+ *               a comma separated value file that  *
+ *               then can be read by a spreadsheet  *
+ *               program to get a visual            *
+ *               representation of timing of        *
+ *               different sorting methods          *
+ *                                                  *
+ **************************************************/
+
+
 package general_assignment_7_pt2;
 
 import java.io.*;
 import java.io.IOException;
-import java.util.*;
 
 /**
  *
- * @author david
+ * @author David Keltgen
  */
 public class CsvWriter {
 
