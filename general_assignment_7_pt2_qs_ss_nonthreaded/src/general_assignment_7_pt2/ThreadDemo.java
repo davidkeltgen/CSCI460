@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package general_assignment_7_pt2_qs_ss_nonthreaded;
+package general_assignment_7_pt2;
 
 /**
  *
@@ -33,14 +33,15 @@ public class ThreadDemo extends Thread {
 
     public void run() {
 
-        if (algorithm == QS_T) {
-            QS = new QS_T(table, 0, table.length - 1);
+        if (algorithm == sortType.QS_T) {
+            QS = new QS_T(table, first, last, true);
             QS.quickSort(table, first, last);
-        } else if (algorithm == QSSS_T) {
-            QSSS = new QSSS_T(table, 0, table.length - 1);
+        } else if (algorithm == sortType.QSSS_T) {
+            QSSS = new QSSS_T(table, first, last, true);
             QSSS.quickSort(table, first, last);
         }
         System.out.println("Thread " + threadName + " exiting.");
+               
     }
 
     public void start() {

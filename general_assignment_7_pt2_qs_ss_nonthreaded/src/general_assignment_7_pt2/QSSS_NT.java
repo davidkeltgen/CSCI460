@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package general_assignment_7_pt2_qs_ss_nonthreaded;
+package general_assignment_7_pt2;
 
 /**
  * This version of Quicksort will sort an array to the point where the size of
@@ -19,8 +19,9 @@ public class QSSS_NT {
 
     int pivIndex;
 
-    private static void quickSort(int[] table, int first, int last) {
+    public void quickSort(int[] table, int first, int last) {
         if (first < last) {
+            System.out.println("inside QSSS_NT");
             int pivIndex = partition(table, first, last);
             /*If partition size greater than 11 */
             if ((pivIndex - 1) - first > 11) {
@@ -33,7 +34,7 @@ public class QSSS_NT {
         }
     }
 
-    private static int partition(int[] table, int first, int last) {
+    private int partition(int[] table, int first, int last) {
         int pivot = table[first];
         int up = first;
         int down = last;
@@ -52,14 +53,14 @@ public class QSSS_NT {
         return down;
     }
 
-    private static void swap(int[] table, int first, int last) {
+    private void swap(int[] table, int first, int last) {
 
         int temp = table[first];
         table[first] = table[last];
         table[last] = temp;
     }
 
-    private static void selectionSort(int[] table, int first, int last) {
+    private void selectionSort(int[] table, int first, int last) {
         int statementCount = 0;
         int i, j, temp;
         for (i = first; i <= last - 2; i++) {
