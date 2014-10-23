@@ -22,11 +22,16 @@ import java.util.*;
 
 public class QSSS_NT {
 
-    int pivIndex;
-
+    private int pivIndex;
+    private int pivot;
+    int up;
+    int down;
+    int statementCount;
+    int i, j, temp1, temp2;
+            
     public void quickSort(int[] table, int first, int last) {
         if (first < last) {
-            System.out.println("inside QSSS_NT");
+            //System.out.println("inside QSSS_NT");
             int pivIndex = partition(table, first, last);
             /*If partition size greater than 11 */
             if ((pivIndex - 1) - first > 11) {
@@ -40,9 +45,9 @@ public class QSSS_NT {
     }
 
     private int partition(int[] table, int first, int last) {
-        int pivot = table[first];
-        int up = first;
-        int down = last;
+        pivot = table[first];
+        up = first;
+        down = last;
         do {
             while ((up < last) && (pivot >= table[up])) {
                 up++;
@@ -60,22 +65,21 @@ public class QSSS_NT {
 
     private void swap(int[] table, int first, int last) {
 
-        int temp = table[first];
+        temp1 = table[first];
         table[first] = table[last];
-        table[last] = temp;
+        table[last] = temp1;
     }
 
     private void selectionSort(int[] table, int first, int last) {
-        int statementCount = 0;
-        int i, j, temp;
+        statementCount = 0;
         for (i = first; i <= last - 2; i++) {
             statementCount++;
             for (j = i + 1; j <= last - 1; j++) {
                 statementCount++;
                 if (table[j] < table[i]) {
-                    temp = table[i];
+                    temp2 = table[i];
                     table[i] = table[j];
-                    table[j] = temp;
+                    table[j] = temp2;
                     statementCount = statementCount + 3;
                 }
                 statementCount++; // add one for execution of the if statement

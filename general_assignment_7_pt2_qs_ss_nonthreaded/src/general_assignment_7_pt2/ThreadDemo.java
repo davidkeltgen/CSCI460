@@ -28,24 +28,24 @@ public class ThreadDemo extends Thread {
         first = in_first;
         last = in_last;
         algorithm = in_algorithm;
-        System.out.println("Creating " + threadName);
+        //System.out.println("Creating " + threadName);
     }
 
     public void run() {
 
         if (algorithm == sortType.QS_T) {
-            QS = new QS_T(table, first, last, true);
+            QS = new QS_T(table, first, last);
             QS.quickSort(table, first, last);
         } else if (algorithm == sortType.QSSS_T) {
-            QSSS = new QSSS_T(table, first, last, true);
+            QSSS = new QSSS_T(table, first, last);
             QSSS.quickSort(table, first, last);
         }
-        System.out.println("Thread " + threadName + " exiting.");
+        //System.out.println("Thread " + threadName + " exiting.");
                
     }
 
     public void start() {
-        System.out.println("Starting " + threadName);
+        //System.out.println("Starting " + threadName);
         if (t == null) {
             t = new Thread(this, threadName);
             t.start();

@@ -9,11 +9,15 @@
 package general_assignment_7_pt2;
 
 public class QS_NT {
-    
+    private static int level = 0;
     int[] table;
     int first;
     int last;
     int pivIndex;
+    int pivot;
+    int up;
+    int down;
+    int temp;
     public QS_NT()
     {
     }
@@ -22,22 +26,29 @@ public class QS_NT {
         first = in_first;
         last = in_last;
     }
-
-    public void quickSort(int[] table, int first, int last) {
+    
+    public int quickSort(int[] table, int first, int last) {
         if (first < last) {
-            System.out.println("inside QS_NT");
-            int pivIndex = partition(table, first, last);
+            level++;
+            //System.out.println("inside QS_NT");
+            pivIndex = partition(table, first, last);
 
             quickSort(table, first, pivIndex - 1);
 
             quickSort(table, pivIndex + 1, last);
+            
+            return 0;
+        }
+        else
+        {
+            return 0;
         }
     }
 
     private int partition(int[] table, int first, int last) {
-        int pivot = table[first];
-        int up = first;
-        int down = last;
+         pivot = table[first];
+         up = first;
+         down = last;
         do {
             while ((up < last) && (pivot >= table[up])) {
                 up++;
@@ -55,7 +66,7 @@ public class QS_NT {
 
     private void swap(int[] table, int first, int last) {
 
-        int temp = table[first];
+        temp = table[first];
         table[first] = table[last];
         table[last] = temp;
     }
